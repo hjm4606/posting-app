@@ -1,23 +1,14 @@
-import Link from "next/link";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+// Import the refactored PostsList component from its new location
+import PostsList from "@/components/postslist";
 
-export default async function Page() {
-  const res = await fetch("https://dummyjson.com/posts?limit=10");
-  const data = await res.json();
-  const posts = data.posts;
 
+export default async function PostsPage() {
+  
   return (
-    <main className="text-center pt-16 px-5">
-      <h1 className="text-4xl md:text-5xl font-bold mb-5">All Posts</h1>
-      <ul className="list-none">
-        {posts.map((post: { id: Key | null | undefined; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) => (
-          <li key={post.id} className="mb-3">
-            <Link href={`/posts/${post.id}`}>
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <div>
+      <h1 className="text-4xl font-bold mb-8">Posts</h1>
+      {/* Render the PostsList component; it no longer needs posts passed as a prop */}
+      <PostsList />
+    </div>
   );
 }

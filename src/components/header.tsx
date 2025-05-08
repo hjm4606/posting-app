@@ -1,55 +1,26 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const navLinks = [
-  {
-    href: "/",
-    label: "Home",
-  },
-  {
-    href: "/posts",
-    label: "Posts",
-  },
-  {
-    href: "/create-post",
-    label: "Create post",
-  },
-];
 
 export default function Header() {
-  const pathname = usePathname();
-
   return (
-    <header className="flex justify-between items-center py-4 px-7 border-b">
-      <Link href="/">
-        <Image
-          src="https://bytegrad.com/course-assets/youtube/example-logo.png"
-          alt="Logo"
-          className="w-[35px] h-[35px]"
-          width="35"
-          height="35"
-        />
-      </Link>
-
-      <nav>
-        <ul className="flex gap-x-5 text-[14px]">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                className={`${
-                  pathname === link.href ? "text-zinc-900" : "text-zinc-400"
-                }`}
-                href={link.href}
-              >
-                {link.label}
-              </Link>
+    <header className="bg-gray-800 text-white p-4 dark:bg-black dark:text-gray-200">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold hover:text-gray-300 dark:hover:text-gray-400">
+          MyLogo
+        </Link>
+        <nav>
+          <ul className="flex space-x-4">
+            <li>
+              <Link href="/" className="hover:text-gray-300 dark:hover:text-gray-400">Home</Link>
             </li>
-          ))}
-        </ul>
-      </nav>
+            <li>
+              <Link href="/posts" className="hover:text-gray-300 dark:hover:text-gray-400">Posts</Link>
+            </li>
+            <li>
+              <Link href="/create-post" className="hover:text-gray-300 dark:hover:text-gray-400">Create Post</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
